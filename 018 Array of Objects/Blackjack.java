@@ -3,7 +3,7 @@ import java.util.*;
 public class Blackjack
 {
 	static Scanner teclado = new Scanner(System.in);
-	static Carta[] Deck = new Carta[52];
+	static Carta[] Deck = new Carta[208];
 	static Carta[] jugador = new Carta[3];
 	static Carta [] dealer = new Carta [3];
 	static int[] numeroJugador = new int[3];
@@ -40,6 +40,8 @@ public class Blackjack
 				ganar(valorJugador, valorDealer);
 				break;
 			case 2:
+				mostrarJugador();
+				mostrarDealer();
 				ganar(valorJugador, valorDealer);
 				break;
 			default:
@@ -127,37 +129,40 @@ public class Blackjack
 	public static void llenadooDeck()
 	{
 		int contador = 0;
-		for (int x = 1; x < 5; x++)
+		for (int z = 1; z < 5; z++)
 		{
-			for (int y = 1; y < 14; y++)
+			for (int x = 1; x < 5; x++)
 			{
-				if (y == 1)
-				{	
-					Carta llenado = new Carta(1,"A");
-					Deck[contador] = llenado;
-				}
-				else if (y == 11)
+				for (int y = 1; y < 14; y++)
 				{
-					Carta llenado = new Carta(10,"J");
-					Deck[contador] = llenado;
+					if (y == 1)
+					{	
+						Carta llenado = new Carta(1,"A");
+						Deck[contador] = llenado;
+					}
+					else if (y == 11)
+					{
+						Carta llenado = new Carta(10,"J");
+						Deck[contador] = llenado;
+					}
+					else if (y == 12)
+					{
+						Carta llenado = new Carta(10,"Q");
+						Deck[contador] = llenado;
+					}
+					else if (y == 13)
+					{
+						Carta llenado = new Carta(10,"K");
+						Deck[contador] = llenado;
+					}
+					else
+					{
+						String numValor = String.valueOf(y);
+						Carta llenado = new Carta(y,numValor);
+						Deck[contador] = llenado;
+					}
+					contador++;
 				}
-				else if (y == 12)
-				{
-					Carta llenado = new Carta(10,"Q");
-					Deck[contador] = llenado;
-				}
-				else if (y == 13)
-				{
-					Carta llenado = new Carta(10,"K");
-					Deck[contador] = llenado;
-				}
-				else
-				{
-					String numValor = String.valueOf(y);
-					Carta llenado = new Carta(y,numValor);
-					Deck[contador] = llenado;
-				}
-				contador++;
 			}
 		}
 	}
@@ -169,7 +174,7 @@ public class Blackjack
 			int condicion = 0;
 			while (condicion == 0)
 			{
-				int numero = (int) (Math.random()*51+1);
+				int numero = (int) (Math.random()*203+1);
 				for (int y = 0; y < 3; y++)
 				{
 					if (numero == numeroJugador[y] || numero == numeroDealer[y])
@@ -198,7 +203,7 @@ public class Blackjack
 			int condicion = 0;
 			while (condicion == 0)
 			{
-				int numero = (int) (Math.random()*51+1);
+				int numero = (int) (Math.random()*203+1);
 				for (int y = 0; y < 3; y++)
 				{
 					if (numero == numeroJugador[y] || numero == numeroDealer[y])
@@ -273,7 +278,7 @@ public class Blackjack
 		int condicion = 0;
 			while (condicion == 0)
 			{
-				int numero = (int) (Math.random()*51+1);
+				int numero = (int) (Math.random()*203+1);
 				for (int y = 0; y < 3; y++)
 				{
 					if (numero == numeroJugador[y] || numero == numeroDealer[y])
